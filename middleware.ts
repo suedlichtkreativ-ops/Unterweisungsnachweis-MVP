@@ -4,6 +4,14 @@ import { NextResponse, type NextRequest } from "next/server";
 const OEFFENTLICH = [/^\/login/, /^\/registrieren/, /^\/auth\//, /^\/u\//, /^\/hinweise/];
 
 export async function middleware(request: NextRequest) {
+  // NEXT_PUBLIC_* werden beim Build eingesetzt – fehlen sie, klar melden statt abzustürzen
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return new NextResponse(
+      "Konfiguration unvollständig: NEXT_PUBLIC_SUPABASE_URL und NEXT_PUBLIC_SUPABASE_ANON_KEY " +
+        "als Umgebungsvariablen setzen und neu bauen (Vercel: Settings → Environment Variables, dann Redeploy).",
+      { status: 503, headers: { "content-type": "text/plain; charset=utf-8" } },
+    );
+  }
   const pfad = request.nextUrl.pathname;
   // Unterschriftsseite: keine Sitzung nötig, keine Cookies anfassen
   if (pfad.startsWith("/u/")) return NextResponse.next();
