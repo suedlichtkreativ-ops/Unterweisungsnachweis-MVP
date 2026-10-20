@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --color-marke-50: #eef4f8;
+  --color-marke-100: #d5e3ec;
+  --color-marke-600: #1f5577;
+  --color-marke-700: #184562;
+  --color-marke-900: #0f2a3c;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-100 text-slate-900 antialiased;
+  }
+  h1 {
+    @apply text-2xl font-bold tracking-tight;
+  }
+  h2 {
+    @apply text-lg font-semibold;
+  }
+  a {
+    @apply text-marke-700 underline-offset-2 hover:underline;
+  }
+}
+
+@utility btn {
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold no-underline transition disabled:cursor-not-allowed disabled:opacity-50 hover:no-underline;
+}
+
+@utility hinweis {
+  @apply rounded-lg border px-3 py-2 text-sm;
+}
+
+@layer components {
+  .karte {
+    @apply rounded-xl border border-slate-200 bg-white p-4 shadow-sm;
+  }
+  .btn-primaer {
+    @apply btn bg-marke-700 text-white hover:bg-marke-900;
+  }
+  .btn-sekundaer {
+    @apply btn border border-slate-300 bg-white text-slate-800 hover:bg-slate-50;
+  }
+  .btn-gefahr {
+    @apply btn border border-red-300 bg-white text-red-700 hover:bg-red-50;
+  }
+  .eingabe {
+    @apply block w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-base focus:border-marke-600 focus:outline-none focus:ring-2 focus:ring-marke-100;
+  }
+  .beschriftung {
+    @apply mb-1 block text-sm font-medium text-slate-700;
+  }
+  .hinweis-warnung {
+    @apply hinweis border-amber-300 bg-amber-50 text-amber-900;
+  }
+  .hinweis-fehler {
+    @apply hinweis border-red-300 bg-red-50 text-red-800;
+  }
+  .hinweis-ok {
+    @apply hinweis border-emerald-300 bg-emerald-50 text-emerald-900;
+  }
+  .hinweis-info {
+    @apply hinweis border-marke-100 bg-marke-50 text-marke-900;
+  }
+}

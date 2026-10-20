@@ -1,0 +1,19 @@
+# Minimale Konfiguration für die Supabase CLI (lokale Entwicklung: `supabase start`).
+# Nicht aufgeführte Werte nutzen die Standardwerte der CLI.
+project_id = "unterweisungsnachweis"
+
+[api]
+schemas = ["public"]
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
+
+[auth]
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000/auth/callback"]
+
+[auth.email]
+enable_signup = true
+# Lokal ohne E-Mail-Bestätigung. In Produktion im Dashboard aktivieren!
+enable_confirmations = false
